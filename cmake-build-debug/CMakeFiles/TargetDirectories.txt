@@ -1,0 +1,3 @@
+/home/faboussa/getnextline/cmake-build-debug/CMakeFiles/GNL.dir
+/home/faboussa/getnextline/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/faboussa/getnextline/cmake-build-debug/CMakeFiles/rebuild_cache.dir
