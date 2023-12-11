@@ -1,33 +1,76 @@
 #include "get_next_line.h"
-// fd = 0 = entree standard = stdin
-// fd = 1 = sortie standart = stdout
-// fd  = 2 = stderr
-char    *get_next_line(int fd)
-{
-	ssize_t 		i;
-    int return_read;
-	char	*string;
-	static char	stash[BUFFER_SIZE] = "\0";
 
-    string = malloc(sizeof(char) * BUFFER_SIZE + 1);
+static char *ft_save_chars_before_end_of_array(char *stash)
+{
+    int i;
+    i = 0;
+    char *temp;
+    while (stash[i] != '\n' && stash[i] != '\0')
+    {
+        printf("stash de i  = %c\n", stash[i]);
+        temp[i] = stash[i];
+        i++;
+    }
+    return (temp);
+}
+
+static void ft_free_all(char *string)
+{
+    int i;
+
+    i = 0;
+    while (string[i])
+        free(&string[i]);
+    free(string);
+}
+
+char *get_next_line(int fd)
+{
+    int i;
+    int j;
+    ssize_t return_read;
+    char *string;
+    char *temp;
+    static char stash[BUFFER_SIZE] = "\0";
+
+    return_read = 1;
+    i = 0;
+    j = 0;
+    string = malloc(sizeof(char) * ft_strlen(stash) + 2);
     if (string == NULL)
         return (NULL);
-    return_read = read(fd, stash, BUFFER_SIZE);
-	if ((return_read == 0) || (return_read == -1))
-		return (NULL);
-	i = 0;
-    while (i <= BUFFER_SIZE && stash[i] != '\n')
-	{
-		string[i] = stash[i];
-		if (return_read <= 0)
-			return (NULL);
-        i++;
-	}
-	//while (stash[i]) // necessaire ?
-		//free (&stash[i]);// necessaire ?
-	//free(string); // necessaire ?
-	string[i] = '\0';
-	return (string);
+
+    while (string[i] != '\n')
+    {
+        while (return_read > 0)
+        {
+            //lecture de tout le buffer size, donc stash peut comprendre des \n
+            return_read = read(fd, stash, BUFFER_SIZE);
+            if ((return_read == 0) || (return_read == -1))
+                return (NULL);
+            printf("return read  = %zd\n", return_read);
+            ft_save_chars_before_end_of_array(stash);
+            while (i <= BUFFER_SIZE)
+            {
+                if (stash[i] != '\n')
+                {
+                    //tant quon ne trouve pas un \n
+                    temp = ft_save_chars_before_end_of_array(stash);
+                    string = ft_strjoin(temp, stash);
+                    ft_free_all(temp);
+                }
+                printf("string is %s\n", string);
+                if (stash[i] == '\n')
+                    ft_memmove(stash, stash + i, ft_strlen(stash + i));
+                printf("stash is %s\n", stash);
+                i++;
+            }
+        }
+    }
+    //while (stash[i]) // necessaire ?
+    //free (&stash[i]);// necessaire ?
+    //free(string); // necessaire ?
+    return (string);
 }
 
 #include <stdio.h>
@@ -39,12 +82,15 @@ int main()
 
     myfile = "/home/faboussa/getnextline/fichier.txt";
     fd = open(myfile, O_RDONLY);
-	if (fd < 0)
-		return (EXIT_FAILURE);
-	printf("fd file is %d\n", fd);
-	printf("%s", get_next_line(fd));
-    printf("%s", get_next_line(fd));
-    printf("%s", get_next_line(fd));
-	close(fd);
-	return (EXIT_SUCCESS);
+    if (fd < 0)
+        return (EXIT_FAILURE);
+    printf("fd file is %d\n", fd);
+    // get_next_line(fd);
+    //get_next_line(fd);
+    //get_next_line(fd);
+    printf("first line is %s", get_next_line(fd));
+    printf("second line is %s", get_next_line(fd));
+    printf("third line is %s", get_next_line(fd));
+    close(fd);
+    return (EXIT_SUCCESS);
 }

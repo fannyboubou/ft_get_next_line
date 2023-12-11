@@ -55,8 +55,8 @@ build CMakeFiles/GNL.dir/get_next_line.c.o: C_COMPILER__GNL_Debug /home/faboussa
   OBJECT_DIR = CMakeFiles/GNL.dir
   OBJECT_FILE_DIR = CMakeFiles/GNL.dir
 
-build CMakeFiles/GNL.dir/get_next_line_utils.c,.c.o: C_COMPILER__GNL_Debug /home/faboussa/getnextline/get_next_line_utils.c,.c || cmake_object_order_depends_target_GNL
-  DEP_FILE = CMakeFiles/GNL.dir/get_next_line_utils.c,.c.o.d
+build CMakeFiles/GNL.dir/get_next_line_utils.c.o: C_COMPILER__GNL_Debug /home/faboussa/getnextline/get_next_line_utils.c || cmake_object_order_depends_target_GNL
+  DEP_FILE = CMakeFiles/GNL.dir/get_next_line_utils.c.o.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu99
   OBJECT_DIR = CMakeFiles/GNL.dir
   OBJECT_FILE_DIR = CMakeFiles/GNL.dir
@@ -69,7 +69,7 @@ build CMakeFiles/GNL.dir/get_next_line_utils.c,.c.o: C_COMPILER__GNL_Debug /home
 #############################################
 # Link the executable GNL
 
-build GNL: C_EXECUTABLE_LINKER__GNL_Debug CMakeFiles/GNL.dir/get_next_line.c.o CMakeFiles/GNL.dir/get_next_line_utils.c,.c.o
+build GNL: C_EXECUTABLE_LINKER__GNL_Debug CMakeFiles/GNL.dir/get_next_line.c.o CMakeFiles/GNL.dir/get_next_line_utils.c.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/GNL.dir
   POST_BUILD = :

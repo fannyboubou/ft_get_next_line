@@ -50,3 +50,55 @@ void    *ft_memcpy(void *dest, const void *src, size_t n)
     }
     return (dest);
 }
+
+char    *ft_strjoin(char const *s1, char const *s2)
+{
+    char            *new_string;
+    size_t          total_length;
+
+    total_length = ft_strlen(s1) + ft_strlen(s2);
+    new_string = malloc(sizeof(char) * total_length + 1);
+    if (new_string == NULL)
+        return (0);
+    ft_strlcpy(new_string, s1, total_length);
+    ft_strlcat(new_string, s2, total_length);
+    return (new_string);
+}
+
+size_t  ft_strlcpy(char *dest, const char *src, size_t size)
+{
+    size_t  i;
+    size_t  return_value;
+
+    i = 0;
+    if (size != 0)
+    {
+        while (i < (size - 1) && src[i] != '\0')
+        {
+            dest[i] = src[i];
+            i++;
+        }
+        dest[i] = '\0';
+    }
+    return_value = ft_strlen(src);
+    return (return_value);
+}
+
+size_t  ft_strlcat(char *dst, const char *src, size_t dstsize)
+{
+    size_t  c;
+    size_t  d;
+
+    if (dstsize <= ft_strlen(dst))
+        return (dstsize + ft_strlen(src));
+    c = ft_strlen(dst);
+    d = 0;
+    while (src[d] != '\0' && c + 1 < dstsize)
+    {
+        dst[c] = src[d];
+        c++;
+        d++;
+    }
+    dst[c] = '\0';
+    return (ft_strlen(dst) + ft_strlen(&src[d]));
+}
