@@ -9,9 +9,11 @@
 #include <stddef.h>
 #include <fcntl.h>
 #define BUFFER_SIZE 42
-#endif BUFFER_SIZE
 
 char *get_next_line(int fd);
 int ft_strlen(const char *string);
+void    *ft_memcpy(void *dest, const void *src, size_t n);
+void    *ft_memmove(void *dest, const void *src, size_t n);
 
+#endif //BUFFER_SIZE
 #endif //GNL_GET_NEXT_LINE_H

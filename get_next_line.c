@@ -1,38 +1,32 @@
 #include "get_next_line.h"
-
+// fd = 0 = entree standard = stdin
+// fd = 1 = sortie standart = stdout
+// fd  = 2 = stderr
 char    *get_next_line(int fd)
 {
-	int		i;
-    char	*string;
-	char	*string2;
-	static int		new_buffer_size;
-	char c;
+	ssize_t 		i;
+    int return_read;
+	char	*string;
+	static char	stash[BUFFER_SIZE] = "\0";
 
-	if ((fd == 0) || (fd == -1))
+    string = malloc(sizeof(char) * BUFFER_SIZE + 1);
+    if (string == NULL)
+        return (NULL);
+    return_read = read(fd, stash, BUFFER_SIZE);
+	if ((return_read == 0) || (return_read == -1))
 		return (NULL);
 	i = 0;
-    string = malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (string == NULL)
-		return (NULL);
-    while (read(fd, &c, BUFFER_SIZE) > 0 && c != '\n')
+    while (i <= BUFFER_SIZE && stash[i] != '\n')
 	{
-		string[i++] =  c;// pb avec buffer size ici
-		if (read(fd, &c, BUFFER_SIZE <= 0))
+		string[i] = stash[i];
+		if (return_read <= 0)
 			return (NULL);
-		if (i == BUFFER_SIZE)
-		{
-			new_buffer_size += BUFFER_SIZE;
-			string2 = realloc(string, sizeof(char) * ft_strlen(string) + new_buffer_size + 1);
-			if (string2 == NULL)
-				return (NULL);
-			string2[i++] = c;
-		}
+        i++;
 	}
-	while (string[i])
-		free (&string[i]);
-	free(string);
-	close(fd);
-	string2[i] = '\0';
+	//while (stash[i]) // necessaire ?
+		//free (&stash[i]);// necessaire ?
+	//free(string); // necessaire ?
+	string[i] = '\0';
 	return (string);
 }
 
@@ -49,6 +43,8 @@ int main()
 		return (EXIT_FAILURE);
 	printf("fd file is %d\n", fd);
 	printf("%s", get_next_line(fd));
+    printf("%s", get_next_line(fd));
+    printf("%s", get_next_line(fd));
 	close(fd);
 	return (EXIT_SUCCESS);
 }
