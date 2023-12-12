@@ -1,6 +1,6 @@
 #include "get_next_line.h"
 
-int ft_strlen(const char *string)
+long unsigned int  ft_strlen(const char *string)
 {
 	int i;
 	i = 0;
@@ -54,10 +54,6 @@ void    *ft_memset(void *s, int c, size_t n)
     return ((void *)(byte));
 }
 
-
-
-
-
 void    *ft_memmove(void *dest, const void *src, size_t n)
 {
     unsigned char   *dest_byte;
@@ -102,8 +98,8 @@ void    *ft_memcpy(void *dest, const void *src, size_t n)
 char    *ft_strjoin(char const *s1, char const *s2)
 {
     char            *new_string;
-    size_t          i;
-    size_t          j;
+    long unsigned int          i;
+    long unsigned int           j;
     size_t          total_length;
 
     total_length = ft_strlen(s1) + ft_strlen(s2);
@@ -147,7 +143,7 @@ size_t  ft_strlcpy(char *dest, const char *src, size_t size)
     return (return_value);
 }
 
-size_t  ft_strlcat(char *dst, const char *src, size_t dstsize)
+size_t  ft_strlcat(char *dst, const char *src, long unsigned int  dstsize)
 {
     size_t  c;
     size_t  d;

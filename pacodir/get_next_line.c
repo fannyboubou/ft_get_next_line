@@ -1,5 +1,5 @@
 #include "get_next_line.h"
-
+/*
 static void ft_free_all(char *string)
 {
     int i;
@@ -9,8 +9,9 @@ static void ft_free_all(char *string)
         free(&string[i]);
     free(string);
 }
-
-void clear_stash(char *stash)
+ */
+/*
+void  *clear_stash(char *stash)
 {
     char *stock;
     int i;
@@ -29,6 +30,7 @@ void clear_stash(char *stash)
     stock[i] = '\0';
     ft_memmove(stash, stock, ft_strlen(stock) + 1);
 }
+ */
 
 char *get_next_line(int fd)
 {
@@ -61,18 +63,16 @@ char *get_next_line(int fd)
                 substring[0] = stash[i];
                 substring[1] = '\0';
                 string = ft_strjoin(string, substring);
-                printf("stash de i is %c\n", stash[i]);
                 //ft_free_all(temp);
             }
                 //printf("string is %s\n", string);
             else if (stash[i] == '\n')
             {
+             //   i++;
                 string = ft_strjoin(string, "\n");
-                clear_stash(stash);
-                printf("stash before memmove is %s\n", stash);
+                ft_memmove(stash, stash + i + 1, (BUFFER_SIZE - i));
                 return (string);
             }
-            printf("stash after memmove is %s\n", stash);
             i++;
         }
         return_read = read(fd, stash, BUFFER_SIZE);
@@ -82,7 +82,7 @@ char *get_next_line(int fd)
     //free(string); // necessaire ?
     return (string);
 }
-
+/*
 #include <stdio.h>
 #include <fcntl.h>
 
@@ -101,7 +101,8 @@ int main()
     //get_next_line(fd);
     printf("first line is %s", get_next_line(fd));
     printf("second line is %s", get_next_line(fd));
-    //printf("third line is %s", get_next_line(fd));
+    printf("third line is %s", get_next_line(fd));
     close(fd);
     return (EXIT_SUCCESS);
 }
+*/
