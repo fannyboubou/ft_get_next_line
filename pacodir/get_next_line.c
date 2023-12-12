@@ -53,8 +53,6 @@ char *get_next_line(int fd)
     {
         i = 0;
         //lecture de tout le buffer size, donc stash peut comprendre des \n
-        printf("return read  = %zd\n", return_read);
-        printf("stash  %s\n", stash);
         while (i < BUFFER_SIZE)
         {
             if (stash[i] != '\n')
@@ -65,10 +63,8 @@ char *get_next_line(int fd)
                 string = ft_strjoin(string, substring);
                 //ft_free_all(temp);
             }
-                //printf("string is %s\n", string);
             else if (stash[i] == '\n')
             {
-             //   i++;
                 string = ft_strjoin(string, "\n");
                 ft_memmove(stash, stash + i + 1, (BUFFER_SIZE - i));
                 return (string);
@@ -76,13 +72,18 @@ char *get_next_line(int fd)
             i++;
         }
         return_read = read(fd, stash, BUFFER_SIZE);
+        if (return_read == -1)
+        {
+            free(string);
+            return (NULL);
+        }
     }
     //while (stash[i]) // necessaire ?
     //free (&stash[i]);// necessaire ?
     //free(string); // necessaire ?
     return (string);
 }
-/*
+
 #include <stdio.h>
 #include <fcntl.h>
 
@@ -105,4 +106,3 @@ int main()
     close(fd);
     return (EXIT_SUCCESS);
 }
-*/

@@ -49,17 +49,17 @@ cmake_ninja_workdir = /home/faboussa/getnextline/cmake-build-debug/
 
 build cmake_object_order_depends_target_GNL: phony || CMakeFiles/GNL.dir
 
-build CMakeFiles/GNL.dir/get_next_line.c.o: C_COMPILER__GNL_Debug /home/faboussa/getnextline/get_next_line.c || cmake_object_order_depends_target_GNL
-  DEP_FILE = CMakeFiles/GNL.dir/get_next_line.c.o.d
+build CMakeFiles/GNL.dir/pacodir/get_next_line.c.o: C_COMPILER__GNL_Debug /home/faboussa/getnextline/pacodir/get_next_line.c || cmake_object_order_depends_target_GNL
+  DEP_FILE = CMakeFiles/GNL.dir/pacodir/get_next_line.c.o.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu99
   OBJECT_DIR = CMakeFiles/GNL.dir
-  OBJECT_FILE_DIR = CMakeFiles/GNL.dir
+  OBJECT_FILE_DIR = CMakeFiles/GNL.dir/pacodir
 
-build CMakeFiles/GNL.dir/get_next_line_utils.c.o: C_COMPILER__GNL_Debug /home/faboussa/getnextline/get_next_line_utils.c || cmake_object_order_depends_target_GNL
-  DEP_FILE = CMakeFiles/GNL.dir/get_next_line_utils.c.o.d
+build CMakeFiles/GNL.dir/pacodir/get_next_line_utils.c.o: C_COMPILER__GNL_Debug /home/faboussa/getnextline/pacodir/get_next_line_utils.c || cmake_object_order_depends_target_GNL
+  DEP_FILE = CMakeFiles/GNL.dir/pacodir/get_next_line_utils.c.o.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu99
   OBJECT_DIR = CMakeFiles/GNL.dir
-  OBJECT_FILE_DIR = CMakeFiles/GNL.dir
+  OBJECT_FILE_DIR = CMakeFiles/GNL.dir/pacodir
 
 
 # =============================================================================
@@ -69,7 +69,7 @@ build CMakeFiles/GNL.dir/get_next_line_utils.c.o: C_COMPILER__GNL_Debug /home/fa
 #############################################
 # Link the executable GNL
 
-build GNL: C_EXECUTABLE_LINKER__GNL_Debug CMakeFiles/GNL.dir/get_next_line.c.o CMakeFiles/GNL.dir/get_next_line_utils.c.o
+build GNL: C_EXECUTABLE_LINKER__GNL_Debug CMakeFiles/GNL.dir/pacodir/get_next_line.c.o CMakeFiles/GNL.dir/pacodir/get_next_line_utils.c.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/GNL.dir
   POST_BUILD = :
