@@ -1,20 +1,5 @@
 #include "get_next_line.h"
 
-//temp est trop long, ce nest pas logique
-static char *ft_save_chars_before_end_of_array(char *stash)
-{
-    int i;
-    i = 0;
-    char *temp;
-    while (stash[i] != '\0')
-    {
-        printf("stash de i  = %c\n", stash[i]);
-        temp[i] = stash[i];
-        i++;
-    }
-    return (temp);
-}
-
 static void ft_free_all(char *string)
 {
     int i;
@@ -25,46 +10,72 @@ static void ft_free_all(char *string)
     free(string);
 }
 
+void clear_stash(char *stash)
+{
+    char *stock;
+    int i;
+
+    i = 0;
+    while (stash[i] != '\n')
+        i++;
+    i++;
+    while (stash[i])
+    {
+        int j = 0;
+        stock[j] = stash[i];
+        i++;
+        j++;
+    }
+    stock[i] = '\0';
+    ft_memmove(stash, stock, ft_strlen(stock) + 1);
+}
+
 char *get_next_line(int fd)
 {
     int i;
     ssize_t return_read;
     char *string;
-    char *temp;
-    static char stash[BUFFER_SIZE] = "\0";
+    static char stash[BUFFER_SIZE] = "\0"; // static de base a 0
 
-    return_read = 1;
-    i = 0;
+    if (stash[0] != '\0')
+        return_read = ft_strlen(stash);
+    else
+        return_read = read(fd, stash, BUFFER_SIZE);
+    if (return_read == 0 || return_read == -1)
+        return (NULL);
     string = malloc(sizeof(char) * ft_strlen(stash) + 2);
     if (string == NULL)
         return (NULL);
 
-    while (string[i] != '\n')
+    while (return_read > 0)
     {
-        while (return_read > 0)
+        i = 0;
+        //lecture de tout le buffer size, donc stash peut comprendre des \n
+        printf("return read  = %zd\n", return_read);
+        printf("stash  %s\n", stash);
+        while (i < BUFFER_SIZE)
         {
-            //lecture de tout le buffer size, donc stash peut comprendre des \n
-            return_read = read(fd, stash, BUFFER_SIZE);
-            if ((return_read == 0) || (return_read == -1))
-                return (NULL);
-            printf("return read  = %zd\n", return_read);
-            while (i <= BUFFER_SIZE)
+            if (stash[i] != '\n')
             {
-                if (stash[i] != '\n')
-                {
-                    //temp a revoir.
-                    temp = ft_save_chars_before_end_of_array(stash);
-                    string = ft_strjoin(temp, stash);
-                    //ft_free_all(temp);
-                }
-                printf("string is %s\n", string);
-                // cett partie ci dessous a lair de fonctionner
-                if (stash[i] == '\n')
-                    ft_memmove(stash, stash + i, ft_strlen(stash + i));
-                printf("stash is %s\n", stash);
-                i++;
+                char substring[2];
+                substring[0] = stash[i];
+                substring[1] = '\0';
+                string = ft_strjoin(string, substring);
+                printf("stash de i is %c\n", stash[i]);
+                //ft_free_all(temp);
             }
+                //printf("string is %s\n", string);
+            else if (stash[i] == '\n')
+            {
+                string = ft_strjoin(string, "\n");
+                clear_stash(stash);
+                printf("stash before memmove is %s\n", stash);
+                return (string);
+            }
+            printf("stash after memmove is %s\n", stash);
+            i++;
         }
+        return_read = read(fd, stash, BUFFER_SIZE);
     }
     //while (stash[i]) // necessaire ?
     //free (&stash[i]);// necessaire ?
@@ -73,6 +84,7 @@ char *get_next_line(int fd)
 }
 
 #include <stdio.h>
+#include <fcntl.h>
 
 int main()
 {
@@ -89,7 +101,7 @@ int main()
     //get_next_line(fd);
     printf("first line is %s", get_next_line(fd));
     printf("second line is %s", get_next_line(fd));
-    printf("third line is %s", get_next_line(fd));
+    //printf("third line is %s", get_next_line(fd));
     close(fd);
     return (EXIT_SUCCESS);
 }
