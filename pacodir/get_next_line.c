@@ -1,22 +1,11 @@
 #include "get_next_line.h"
 
-/*
-static void ft_free_all(char *string)
-{
-    int i;
-
-    i = 0;
-    while (string[i])
-        free(&string[i]);
-    free(string);
-}
-*/
 char *get_next_line(int fd)
 {
 	int i;
 	ssize_t return_read;
 	char *string;
-	static char stash[BUFFER_SIZE];
+	static char stash[BUFFER_SIZE] = "\0";
 
 	if (stash[0] != '\0')
 		return_read = ft_strlen(stash);
@@ -31,22 +20,15 @@ char *get_next_line(int fd)
 	while (return_read > 0)
 	{
 		i = 0;
-		while (i < BUFFER_SIZE)
+		while (stash[i])
 		{
-			if (stash[i] != '\n' && stash[i])
+			 if (stash[i] != '\n')
 			{
 				char substring[2];
 				substring[0] = stash[i];
 				substring[1] = '\0';
 				string = ft_strjoin(string, substring);
-				/*
-				if (string == NULL)
-				{
-					free(string);
-					return (NULL);
-				}
-				 */
-				//ft_free_all(temp);
+				// faire un pointeur temp de string que je garde et je free le reste ou free dans strjoin
 			}
 			else
 			{
@@ -57,18 +39,8 @@ char *get_next_line(int fd)
 			i++;
 		}
 		return_read = read(fd, stash, BUFFER_SIZE);
-		/*
-        if (return_read == -1 && string[i] == '\0')
-        {
-            free(string);
-            stash[BUFFER_SIZE - i - 1] = '\0';
-            return (NULL);
-        }
-        */
+		stash[return_read] = '\0';
 	}
-	//while (stash[i]) // necessaire ?
-	//free (&stash[i]);// necessaire ?
-	//free(string); // necessaire ?
 	return (string);
 }
 
@@ -88,10 +60,12 @@ int main()
 	// get_next_line(fd);
 	//get_next_line(fd);
 	//get_next_line(fd);
-	printf("first line is %s\n", get_next_line(fd));
-	printf("second line is %s\n", get_next_line(fd));
-	printf("third line is %s\n", get_next_line(fd));
+	printf("first line is %s", get_next_line(fd));
+	printf("second line is %s", get_next_line(fd));
+	printf("third line is %s", get_next_line(fd));
+	printf("fourth line is %s", get_next_line(fd));
+	printf("fifth line is %s", get_next_line(fd));
 	close(fd);
 	return (EXIT_SUCCESS);
 }
- */
+*/

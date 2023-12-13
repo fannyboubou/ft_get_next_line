@@ -2,7 +2,7 @@
 #define GNL_GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 2
+#  define BUFFER_SIZE 100000000
 # endif //BUFFER_SIZE
 
 #include <errno.h>
@@ -23,6 +23,7 @@ size_t  ft_strlcat(char *dst, const char *src, long unsigned int dstsize);
 void    *ft_bzero(void *s, size_t n);
 void    *ft_calloc(size_t nmemb, size_t size);
 void    *ft_memset(void *s, int c, size_t n);
+long unsigned int  ft_strlen2(const char *string);
 
 
 #endif //GNL_GET_NEXT_LINE_H
