@@ -2,7 +2,7 @@
 #define GNL_GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
+#  define BUFFER_SIZE 100000000
 # endif //BUFFER_SIZE
 
 #include <errno.h>
