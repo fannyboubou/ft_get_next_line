@@ -7,6 +7,8 @@ char *get_next_line(int fd)
 	char *string;
 	static char stash[BUFFER_SIZE] = "\0";
 
+    if (BUFFER_SIZE == 0 || fd == 0)
+        return (NULL);
 	if (stash[0] != '\0')
 		return_read = ft_strlen(stash);
 	else
