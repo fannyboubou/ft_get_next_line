@@ -48,13 +48,13 @@ char *get_next_line(int fd)
 
 #include <stdio.h>
 #include <fcntl.h>
-/*
+
 int main()
 {
 	int fd;
 	char *myfile;
 
-	myfile = "/home/faboussa/getnextline/fichier.txt";
+	myfile = "/home/fanny/getnextlinefanny/fichier.txt";
 	fd = open(myfile, O_RDONLY);
 	if (fd < 0)
 		return (EXIT_FAILURE);
@@ -70,4 +70,3 @@ int main()
 	close(fd);
 	return (EXIT_SUCCESS);
 }
-*/
