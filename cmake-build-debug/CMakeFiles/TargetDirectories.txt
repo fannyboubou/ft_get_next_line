@@ -1,0 +1,3 @@
+/home/fanny/getnextlinefanny/cmake-build-debug/CMakeFiles/GNL.dir
+/home/fanny/getnextlinefanny/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/fanny/getnextlinefanny/cmake-build-debug/CMakeFiles/rebuild_cache.dir
