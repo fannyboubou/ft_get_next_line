@@ -1,5 +1,5 @@
 #include "get_next_line.h"
-
+/*
 char *get_next_line(int fd)
 {
 	int i;
@@ -70,3 +70,4 @@ int main()
 	close(fd);
 	return (EXIT_SUCCESS);
 }
+*/
