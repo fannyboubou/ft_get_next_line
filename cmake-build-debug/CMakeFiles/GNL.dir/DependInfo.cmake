@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/fanny/getnextlinefanny/pacodir/get_next_line_bis.c" "CMakeFiles/GNL.dir/pacodir/get_next_line_bis.c.o" "gcc" "CMakeFiles/GNL.dir/pacodir/get_next_line_bis.c.o.d"
+  "/home/fanny/getnextlinefanny/pacodir/get_next_line.c" "CMakeFiles/GNL.dir/pacodir/get_next_line.c.o" "gcc" "CMakeFiles/GNL.dir/pacodir/get_next_line.c.o.d"
   "/home/fanny/getnextlinefanny/pacodir/get_next_line_utils.c" "CMakeFiles/GNL.dir/pacodir/get_next_line_utils.c.o" "gcc" "CMakeFiles/GNL.dir/pacodir/get_next_line_utils.c.o.d"
   )
 

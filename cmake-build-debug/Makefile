@@ -129,29 +129,29 @@ GNL/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/GNL.dir/build.make CMakeFiles/GNL.dir/build
 .PHONY : GNL/fast
 
-pacodir/get_next_line_bis.o: pacodir/get_next_line_bis.c.o
-.PHONY : pacodir/get_next_line_bis.o
+pacodir/get_next_line.o: pacodir/get_next_line.c.o
+.PHONY : pacodir/get_next_line.o
 
 # target to build an object file
-pacodir/get_next_line_bis.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GNL.dir/build.make CMakeFiles/GNL.dir/pacodir/get_next_line_bis.c.o
-.PHONY : pacodir/get_next_line_bis.c.o
+pacodir/get_next_line.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GNL.dir/build.make CMakeFiles/GNL.dir/pacodir/get_next_line.c.o
+.PHONY : pacodir/get_next_line.c.o
 
-pacodir/get_next_line_bis.i: pacodir/get_next_line_bis.c.i
-.PHONY : pacodir/get_next_line_bis.i
+pacodir/get_next_line.i: pacodir/get_next_line.c.i
+.PHONY : pacodir/get_next_line.i
 
 # target to preprocess a source file
-pacodir/get_next_line_bis.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GNL.dir/build.make CMakeFiles/GNL.dir/pacodir/get_next_line_bis.c.i
-.PHONY : pacodir/get_next_line_bis.c.i
+pacodir/get_next_line.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GNL.dir/build.make CMakeFiles/GNL.dir/pacodir/get_next_line.c.i
+.PHONY : pacodir/get_next_line.c.i
 
-pacodir/get_next_line_bis.s: pacodir/get_next_line_bis.c.s
-.PHONY : pacodir/get_next_line_bis.s
+pacodir/get_next_line.s: pacodir/get_next_line.c.s
+.PHONY : pacodir/get_next_line.s
 
 # target to generate assembly for a file
-pacodir/get_next_line_bis.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GNL.dir/build.make CMakeFiles/GNL.dir/pacodir/get_next_line_bis.c.s
-.PHONY : pacodir/get_next_line_bis.c.s
+pacodir/get_next_line.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GNL.dir/build.make CMakeFiles/GNL.dir/pacodir/get_next_line.c.s
+.PHONY : pacodir/get_next_line.c.s
 
 pacodir/get_next_line_utils.o: pacodir/get_next_line_utils.c.o
 .PHONY : pacodir/get_next_line_utils.o
@@ -186,9 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... GNL"
-	@echo "... pacodir/get_next_line_bis.o"
-	@echo "... pacodir/get_next_line_bis.i"
-	@echo "... pacodir/get_next_line_bis.s"
+	@echo "... pacodir/get_next_line.o"
+	@echo "... pacodir/get_next_line.i"
+	@echo "... pacodir/get_next_line.s"
 	@echo "... pacodir/get_next_line_utils.o"
 	@echo "... pacodir/get_next_line_utils.i"
 	@echo "... pacodir/get_next_line_utils.s"

@@ -83,30 +83,30 @@ CMakeFiles/GNL.dir/pacodir/get_next_line_utils.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/GNL.dir/pacodir/get_next_line_utils.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/fanny/getnextlinefanny/pacodir/get_next_line_utils.c -o CMakeFiles/GNL.dir/pacodir/get_next_line_utils.c.s
 
-CMakeFiles/GNL.dir/pacodir/get_next_line_bis.c.o: CMakeFiles/GNL.dir/flags.make
-CMakeFiles/GNL.dir/pacodir/get_next_line_bis.c.o: /home/fanny/getnextlinefanny/pacodir/get_next_line_bis.c
-CMakeFiles/GNL.dir/pacodir/get_next_line_bis.c.o: CMakeFiles/GNL.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/fanny/getnextlinefanny/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/GNL.dir/pacodir/get_next_line_bis.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/GNL.dir/pacodir/get_next_line_bis.c.o -MF CMakeFiles/GNL.dir/pacodir/get_next_line_bis.c.o.d -o CMakeFiles/GNL.dir/pacodir/get_next_line_bis.c.o -c /home/fanny/getnextlinefanny/pacodir/get_next_line_bis.c
+CMakeFiles/GNL.dir/pacodir/get_next_line.c.o: CMakeFiles/GNL.dir/flags.make
+CMakeFiles/GNL.dir/pacodir/get_next_line.c.o: /home/fanny/getnextlinefanny/pacodir/get_next_line.c
+CMakeFiles/GNL.dir/pacodir/get_next_line.c.o: CMakeFiles/GNL.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/fanny/getnextlinefanny/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/GNL.dir/pacodir/get_next_line.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/GNL.dir/pacodir/get_next_line.c.o -MF CMakeFiles/GNL.dir/pacodir/get_next_line.c.o.d -o CMakeFiles/GNL.dir/pacodir/get_next_line.c.o -c /home/fanny/getnextlinefanny/pacodir/get_next_line.c
 
-CMakeFiles/GNL.dir/pacodir/get_next_line_bis.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/GNL.dir/pacodir/get_next_line_bis.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/fanny/getnextlinefanny/pacodir/get_next_line_bis.c > CMakeFiles/GNL.dir/pacodir/get_next_line_bis.c.i
+CMakeFiles/GNL.dir/pacodir/get_next_line.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/GNL.dir/pacodir/get_next_line.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/fanny/getnextlinefanny/pacodir/get_next_line.c > CMakeFiles/GNL.dir/pacodir/get_next_line.c.i
 
-CMakeFiles/GNL.dir/pacodir/get_next_line_bis.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/GNL.dir/pacodir/get_next_line_bis.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/fanny/getnextlinefanny/pacodir/get_next_line_bis.c -o CMakeFiles/GNL.dir/pacodir/get_next_line_bis.c.s
+CMakeFiles/GNL.dir/pacodir/get_next_line.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/GNL.dir/pacodir/get_next_line.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/fanny/getnextlinefanny/pacodir/get_next_line.c -o CMakeFiles/GNL.dir/pacodir/get_next_line.c.s
 
 # Object files for target GNL
 GNL_OBJECTS = \
 "CMakeFiles/GNL.dir/pacodir/get_next_line_utils.c.o" \
-"CMakeFiles/GNL.dir/pacodir/get_next_line_bis.c.o"
+"CMakeFiles/GNL.dir/pacodir/get_next_line.c.o"
 
 # External object files for target GNL
 GNL_EXTERNAL_OBJECTS =
 
 GNL: CMakeFiles/GNL.dir/pacodir/get_next_line_utils.c.o
-GNL: CMakeFiles/GNL.dir/pacodir/get_next_line_bis.c.o
+GNL: CMakeFiles/GNL.dir/pacodir/get_next_line.c.o
 GNL: CMakeFiles/GNL.dir/build.make
 GNL: CMakeFiles/GNL.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/fanny/getnextlinefanny/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable GNL"
