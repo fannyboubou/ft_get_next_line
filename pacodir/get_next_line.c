@@ -30,44 +30,53 @@ char *get_before_new_line(char const *stash)
         i++;
     }
     if (stash[i] && stash[i] == '\n')
+    {
         res[i] = stash[i];
+        i++; //javance de 1 comme dans le while
+    }
     res[i] = '\0';
     return (res);
 }
 
 char *get_next_line(int fd)
 {
-    int i;
     ssize_t return_read;
-    char *line;
     char *temp;
     static char stash[BUFFER_SIZE] = "\0";
 
+    temp = malloc(sizeof(char));
     temp[0] = '\0';
-    //if (BUFFER_SIZE <= 0 || fd <= 0 || read(fd, 0, 0) == 0)
-    //  return (NULL);
-    return_read = read(fd, stash, BUFFER_SIZE);
+    //if (BUFFER_SIZE <= 0 || fd <= 0 || read(fd, 0, 0) <= 0)
+     // return (NULL);
+    if (stash[0] != '\0')
+        return_read = ft_strlen(stash);
+    else
+        return_read = read(fd, stash, BUFFER_SIZE);
     if (return_read == 0 || return_read == -1)
+    {
+        free(temp);
         return (NULL);
-    while (return_read >= 0)
+    }
+    while (return_read > 0)
     {
         char *line = get_before_new_line(stash);
         temp = ft_strjoin(temp, line);
         free(line);
 
-        if (temp && temp[ft_strlen(temp)] == '\n')
+        if (temp[ft_strlen(temp) - 1] == '\n')
         {
             // Adjust the buffer after reading a line
-            ft_memmove(stash, stash + ft_strlen(stash), (BUFFER_SIZE - ft_strlen(stash)));
-            free(temp);
+            ft_memmove(stash, stash + ft_strlen(stash) + 1, (BUFFER_SIZE - ft_strlen(stash) + 1));
+            stash[BUFFER_SIZE - ft_strlen(temp)] = '\0';
             return (temp);
         }
-        stash[return_read] = '\0';
         return_read = read(fd, stash, BUFFER_SIZE);
+        stash[return_read] = '\0';
     }
+    //stash[BUFFER_SIZE - ft_strlen(stash)] = '\0';
     return (temp);
 }
-
+/*
 #include <stdio.h>
 #include <fcntl.h>
 
@@ -92,3 +101,4 @@ char *get_next_line(int fd)
         close(fd);
         return (EXIT_SUCCESS);
     }
+*/
