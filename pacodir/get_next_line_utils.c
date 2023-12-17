@@ -74,8 +74,21 @@ char    *ft_strjoin(char const *s1, char const *s2)
         j++;
         i++;
     }
-    if (!s1)
-        free((void*)(s1));
+   // if (!s1)
+     //   free((void*)(s1));
     new_string[i] = '\0';
     return (new_string);
+}
+
+char	*ft_strchr(const char *string, int searchedChar )
+{
+    char	*str;
+
+    str = (char *)string;
+    while (*str != searchedChar && *str != 0)
+        str++;
+    if (*str == searchedChar)
+        return (str);
+    else
+        return (NULL);
 }

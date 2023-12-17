@@ -3,4 +3,5 @@ project(GNL C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(GNL pacodir/get_next_line.c pacodir/get_next_line_utils.c pacodir/get_next_line.h)
+add_executable(GNL get_next_line.c pacodir/get_next_line_utils.c pacodir/get_next_line.h
+        pacodir/get_next_line.c)

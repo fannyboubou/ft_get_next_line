@@ -24,6 +24,6 @@ void    *ft_bzero(void *s, size_t n);
 void    *ft_calloc(size_t nmemb, size_t size);
 void    *ft_memset(void *s, int c, size_t n);
 long unsigned int  ft_strlen2(const char *string);
-
+char	*ft_strchr(const char *string, int searchedChar );
 
 #endif //GNL_GET_NEXT_LINE_H
