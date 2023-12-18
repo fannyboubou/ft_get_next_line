@@ -42,63 +42,69 @@ char *get_next_line(int fd)
 {
     ssize_t return_read;
     char *temp;
+    char *line;
     static char stash[BUFFER_SIZE] = "\0";
 
-    temp = malloc(sizeof(char));
-    temp[0] = '\0';
-    //if (BUFFER_SIZE <= 0 || fd <= 0 || read(fd, 0, 0) <= 0)
-     // return (NULL);
+    if (fd < 0 || BUFFER_SIZE <= 0)
+        return (NULL);
+    line = malloc(sizeof(char));
+    line[0] = '\0';
     if (stash[0] != '\0')
         return_read = ft_strlen(stash);
     else
         return_read = read(fd, stash, BUFFER_SIZE);
-    if (return_read == 0 || return_read == -1)
+    if (return_read <= 0)
     {
-        free(temp);
+        free(line);
         return (NULL);
     }
     while (return_read > 0)
     {
-        char *line = get_before_new_line(stash);
-        temp = ft_strjoin(temp, line);
-        free(line);
+        temp = get_before_new_line(stash);
+        if (temp == NULL)
+            return (NULL);
+        line = ft_strjoin(line, temp);
+        if (line == NULL)
+            return (NULL);
+        free(temp);
 
-        if (temp[ft_strlen(temp) - 1] == '\n')
+        if (line[ft_strlen(line) - 1] == '\n')
         {
-            // Adjust the buffer after reading a line
-            ft_memmove(stash, stash + ft_strlen(stash) + 1, (BUFFER_SIZE - ft_strlen(stash) + 1));
-            stash[BUFFER_SIZE - ft_strlen(temp)] = '\0';
-            return (temp);
+            // Adjust the buffer after reading a temp
+            ft_memmove(stash, stash + ft_strlen(line), (BUFFER_SIZE - ft_strlen(stash)));
+            break;
         }
         return_read = read(fd, stash, BUFFER_SIZE);
+       //ft_memmove(stash, stash + ft_strlen(stash) + 1, (BUFFER_SIZE - ft_strlen(stash)));
         stash[return_read] = '\0';
     }
-    //stash[BUFFER_SIZE - ft_strlen(stash)] = '\0';
-    return (temp);
+   stash[BUFFER_SIZE - ft_strlen(stash)] = '\0';
+    return (line);
 }
-/*
+
+
 #include <stdio.h>
 #include <fcntl.h>
 
-    int main()
-    {
-        int fd;
-        char *myfile;
+//    int main()
+//    {
+//        int fd;
+//        char *myfile;
+//
+//        myfile = "/home/fanny/getnextlinefanny/multiple_nl.txt";
+//        fd = open(myfile, O_RDONLY);
+//        if (fd < 0)
+//            return (EXIT_FAILURE);
+//        printf("fd file is %d\n", fd);
+//        // get_next_line(fd);
+//        //get_next_line(fd);
+//        //get_next_line(fd);
+//        printf("first line is %s", get_next_line(fd));
+//        printf("second line is %s", get_next_line(fd));
+//        printf("third line is %s", get_next_line(fd));
+//        printf("fourth line is %s", get_next_line(fd));
+//        printf("fifth line is %s", get_next_line(fd));
+//        close(fd);
+//        return (EXIT_SUCCESS);
+//    }
 
-        myfile = "/home/fanny/getnextlinefanny/fichier.txt";
-        fd = open(myfile, O_RDONLY);
-        if (fd < 0)
-            return (EXIT_FAILURE);
-        printf("fd file is %d\n", fd);
-        // get_next_line(fd);
-        //get_next_line(fd);
-        //get_next_line(fd);
-        printf("first line is %s", get_next_line(fd));
-        printf("second line is %s", get_next_line(fd));
-        printf("third line is %s", get_next_line(fd));
-        printf("fourth line is %s", get_next_line(fd));
-        printf("fifth line is %s", get_next_line(fd));
-        close(fd);
-        return (EXIT_SUCCESS);
-    }
-*/

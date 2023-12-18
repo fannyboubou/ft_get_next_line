@@ -74,7 +74,7 @@ char    *ft_strjoin(char const *s1, char const *s2)
         j++;
         i++;
     }
-    if (!s1)
+    if (s1)
         free((void*)(s1));
     new_string[i] = '\0';
     return (new_string);
