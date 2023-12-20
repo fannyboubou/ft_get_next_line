@@ -70,41 +70,46 @@ char *get_next_line(int fd)
 
         if (line[ft_strlen(line) - 1] == '\n')
         {
-            // Adjust the buffer after reading a temp
-            ft_memmove(stash, stash + ft_strlen(line), (BUFFER_SIZE - ft_strlen(stash)));
+            // Adjust the buffer after reading a line
+            ft_memmove(stash, stash + ft_strlen_special(stash) + 1, BUFFER_SIZE);
+//            stash[return_read - ft_strlen(line)] = '\0';
             break;
         }
+//pb pour le return read, il read deux fois 45 45
         return_read = read(fd, stash, BUFFER_SIZE);
-       //ft_memmove(stash, stash + ft_strlen(stash) + 1, (BUFFER_SIZE - ft_strlen(stash)));
         stash[return_read] = '\0';
     }
-   stash[BUFFER_SIZE - ft_strlen(stash)] = '\0';
+
     return (line);
 }
 
-
+//pb au quatrieme passage le memmove enleve le backslah n et le 0.
 #include <stdio.h>
 #include <fcntl.h>
 
-//    int main()
-//    {
-//        int fd;
-//        char *myfile;
-//
-//        myfile = "/home/fanny/getnextlinefanny/multiple_nl.txt";
-//        fd = open(myfile, O_RDONLY);
-//        if (fd < 0)
-//            return (EXIT_FAILURE);
-//        printf("fd file is %d\n", fd);
-//        // get_next_line(fd);
-//        //get_next_line(fd);
-//        //get_next_line(fd);
-//        printf("first line is %s", get_next_line(fd));
-//        printf("second line is %s", get_next_line(fd));
-//        printf("third line is %s", get_next_line(fd));
-//        printf("fourth line is %s", get_next_line(fd));
-//        printf("fifth line is %s", get_next_line(fd));
-//        close(fd);
-//        return (EXIT_SUCCESS);
-//    }
+    int main()
+    {
+        int fd;
+        char *myfile;
+
+        myfile = "/home/fanny/getnextlinefanny/giant_line_nl.txt";
+        fd = open(myfile, O_RDONLY);
+        if (fd < 0)
+            return (EXIT_FAILURE);
+        printf("fd file is %d\n", fd);
+        // get_next_line(fd);
+        //get_next_line(fd);
+        //get_next_line(fd);
+        printf("first line is %s\n", get_next_line(fd));
+        printf("second line is %s", get_next_line(fd));
+        printf("third line is %s", get_next_line(fd));
+        printf("fourth line is %s", get_next_line(fd));
+        printf("fifth line is %s", get_next_line(fd));
+        printf("sixth line is %s", get_next_line(fd));
+        printf("seventh line is %s", get_next_line(fd));
+        printf("eighth line is %s", get_next_line(fd));
+        printf("ninth line is %s", get_next_line(fd));
+        close(fd);
+        return (EXIT_SUCCESS);
+    }
 

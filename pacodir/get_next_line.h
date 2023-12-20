@@ -2,7 +2,7 @@
 #define GNL_GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 1000000
 # endif //BUFFER_SIZE
 
 #include <errno.h>
@@ -24,6 +24,6 @@ void    *ft_bzero(void *s, size_t n);
 void    *ft_calloc(size_t nmemb, size_t size);
 void    *ft_memset(void *s, int c, size_t n);
 long unsigned int  ft_strlen2(const char *string);
-
+long unsigned int  ft_strlen_special(const char *string);
 
 #endif //GNL_GET_NEXT_LINE_H

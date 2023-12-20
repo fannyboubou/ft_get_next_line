@@ -9,6 +9,15 @@ long unsigned int  ft_strlen(const char *string)
 	return (i);
 }
 
+long unsigned int  ft_strlen_special(const char *string)
+{
+    int i;
+    i = 0;
+    while (string[i] != '\n')
+        i++;
+    return (i);
+}
+
 void    *ft_memmove(void *dest, const void *src, size_t n)
 {
     unsigned char   *dest_byte;
