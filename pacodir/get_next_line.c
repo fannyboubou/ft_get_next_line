@@ -1,15 +1,24 @@
 #include "get_next_line.h"
-//0. on lit et on retournle stash.
-// 1. on retourne la fin du stash ou le backslash n.
-//2. on join dans la ligne finale a rendre.
-// 2.5 on vide ce quon a mis dans la ligne finale : memove : bouger ce quil y a apres le backslash n ou apres le char vide (rien)
-// on remet un char vide a la fin de stash
-//3. si ya pas eu de fin de read on recommence avec le prochain stash
 
+char	*get_reminder(char **str)
+{
+    char	*reminder;
+    int		rlen;
 
-//0. on lit et on retournle stash.
+    rlen = ft_strlen(*str);
+    reminder = ft_substr(*str, 1, rlen);
+    free(*str);
+    *str = NULL;
+    return (reminder);
+}
 
-// 1. on retourne le stash jusquau dernier char ou au le backslash n.
+char *func(char **line, char **tmp)
+{
+    *line = ft_substr(*tmp, 0, 1);
+    *tmp = get_reminder(tmp);
+    return (*line);
+}
+
 char *get_before_new_line(char const *stash)
 {
     char *res;
@@ -20,7 +29,7 @@ char *get_before_new_line(char const *stash)
         i++;
     if (stash[i] && stash[i] == '\n')
         i++;
-    res = malloc(sizeof(char) * i + 1);
+    res = malloc(sizeof(char) * (i + 1));
     if (res == NULL)
         return (NULL);
     i = 0;
@@ -32,7 +41,7 @@ char *get_before_new_line(char const *stash)
     if (stash[i] && stash[i] == '\n')
     {
         res[i] = stash[i];
-        i++; //javance de 1 comme dans le while
+        i++;
     }
     res[i] = '\0';
     return (res);
@@ -41,14 +50,15 @@ char *get_before_new_line(char const *stash)
 char *get_next_line(int fd)
 {
     ssize_t return_read;
-    char *temp;
     char *line;
+    char *final;
     static char stash[BUFFER_SIZE] = "\0";
 
     if (fd < 0 || BUFFER_SIZE <= 0)
         return (NULL);
-    line = malloc(sizeof(char));
+    line = malloc(sizeof(char) * 2);
     line[0] = '\0';
+    line[1] = '\0';
     if (stash[0] != '\0')
         return_read = ft_strlen(stash);
     else
@@ -60,30 +70,18 @@ char *get_next_line(int fd)
     }
     while (return_read > 0)
     {
-        temp = get_before_new_line(stash);
-        if (temp == NULL)
-            return (NULL);
-        line = ft_strjoin(line, temp);
+        line = ft_strjoin(line, get_before_new_line(stash));
         if (line == NULL)
             return (NULL);
-        free(temp);
-
         if (line[ft_strlen(line) - 1] == '\n')
-        {
-            // Adjust the buffer after reading a line
-            ft_memmove(stash, stash + ft_strlen_special(stash) + 1, BUFFER_SIZE);
-//            stash[return_read - ft_strlen(line)] = '\0';
-            break;
-        }
-//pb pour le return read, il read deux fois 45 45
+            return (func(&final, &line));
         return_read = read(fd, stash, BUFFER_SIZE);
         stash[return_read] = '\0';
     }
-
-    return (line);
+    free(line);
+    return (NULL);
 }
 
-//pb au quatrieme passage le memmove enleve le backslah n et le 0.
 #include <stdio.h>
 #include <fcntl.h>
 
@@ -92,7 +90,7 @@ char *get_next_line(int fd)
         int fd;
         char *myfile;
 
-        myfile = "/home/fanny/getnextlinefanny/giant_line_nl.txt";
+        myfile = "/home/fanny/getnextlinefanny/1char.txt";
         fd = open(myfile, O_RDONLY);
         if (fd < 0)
             return (EXIT_FAILURE);
